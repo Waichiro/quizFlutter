@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors
 import './questao.dart';
+import './resposta.dart';
 import 'package:flutter/material.dart';
 
 main() => runApp(PerguntaApp());
@@ -29,23 +30,10 @@ class _PerguntaAppState extends State<PerguntaApp>{
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]),
-            RaisedButton(
-              child: Text('Preto'),
-              onPressed: _responder,
-            ),
-            RaisedButton(
-              child: Text('Azul'),
-              onPressed: _responder,
-            ),
-  
-            RaisedButton(
-              child: Text('Rosa'),
-              onPressed: _responder,
-            ),
-            RaisedButton(
-              child: Text('Verde'),
-              onPressed: _responder,
-            ),
+            Resposta('Resposta 1'),
+            Resposta('Resposta 2'),
+            Resposta('Resposta 3'),
+              
           ],
         ),
       ),
