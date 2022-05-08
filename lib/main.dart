@@ -5,68 +5,76 @@ import 'package:flutter/material.dart';
 
 main() => runApp(PerguntaApp());
 
-class _PerguntaAppState extends State<PerguntaApp>{
+class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
 
   final List<Map<String, Object>> _perguntas = const [
-      {
-        'texto':'Qual é a sua cor favorita?',
-        'resposta': ['Preto', 'Vermelho', 'Verde', 'Branco']
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'resposta': [
+        {'texto': 'Preto', 'pontuacao': 10},
+        {'texto': 'Vermelho', 'pontuacao': 7},
+        {'texto': 'Verde', 'pontuacao': 5},
+        {'texto': 'Branco', 'pontuacao': 1},
+      ]
+    },
+    {
+      'texto': 'Qual é o seu animal favorito?',
+      'resposta': [
+        {'texto':'Coelho', 'pontuacao': 1},
+        {'texto':'Gato', 'pontuacao': 5},
+        {'texto':'Cachorro', 'pontuacao': 7},
+        {'texto':'Elefante', 'pontuacao': 8},
+      ]
+    },
+    {
+      'texto': 'Qual é o seu nome favorito?',
+      'resposta': [
+        {'texto':'Leo', 'pontuacao': 8},
+        {'texto':'Gabriel', 'pontuacao': 10},
+        {'texto':'Rafa', 'pontuacao': 3},
+        {'texto':'João', 'pontuacao': 5},
+      ]
+    },
+  ];
 
-      },
-      {
-        'texto':'Qual é o seu animal favorito?',
-        'resposta': ['Coelho', 'Gato', 'Cachorro', 'Elefante']
-
-      },
-      {
-        'texto':'Qual é o seu nome favorito?',
-        'resposta': ['Leo', 'Gabriel', 'Maria', 'João']
-
-      },
-    ];
-
-  void _responder(){
-    if(temPerguntaSelecionada){
+  void _responder(int pontuacao) {
+    if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
+    print(_pontuacaoTotal);
   }
 
-  bool get temPerguntaSelecionada{
+  bool get temPerguntaSelecionada {
     return _perguntaSelecionada < _perguntas.length;
   }
 
-
-
   @override
-  Widget build(BuildContext context){
-    
-   
-    
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Perguntas'),
-          
-        ),
-        body: temPerguntaSelecionada ? Questionario(perguntas: _perguntas, perguntaSelecionada: _perguntaSelecionada, quandoResponderesponder: _responder)  : Resultado()
-      ),
+          appBar: AppBar(
+            title: Text('Perguntas'),
+          ),
+          body: temPerguntaSelecionada
+              ? Questionario(
+                  perguntas: _perguntas,
+                  perguntaSelecionada: _perguntaSelecionada,
+                  quandoResponder: _responder)
+              : Resultado(_pontuacaoTotal)),
     );
   }
 }
 
-
 class PerguntaApp extends StatefulWidget {
   const PerguntaApp({Key? key}) : super(key: key);
-
-
 
   @override
   _PerguntaAppState createState() {
     return _PerguntaAppState();
   }
 }
-  
-  

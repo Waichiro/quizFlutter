@@ -6,12 +6,12 @@ class Questionario extends StatelessWidget {
 
   final List<Map<String, Object>> perguntas;
   final perguntaSelecionada;
-  final void Function() quandoResponderesponder;
+  final void Function(int) quandoResponder;
 
   Questionario({
     required this.perguntas,
     required this.perguntaSelecionada,
-    required this.quandoResponderesponder,
+    required this.quandoResponder,
   });
 
   bool get temPerguntaSelecionada{
@@ -21,13 +21,17 @@ class Questionario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-     List<String> respostas = temPerguntaSelecionada ? perguntas[perguntaSelecionada].cast()['resposta'] : [];
+     List<Map<String, Object>> respostas = temPerguntaSelecionada ? perguntas[perguntaSelecionada].cast()['resposta'] : [];
 
     return Column(
           children: [
             Questao(perguntas[perguntaSelecionada]['texto'].toString()),
-            ...respostas.map((t) => Resposta(t, quandoResponderesponder)).toList(),//Abordagem declarativa usando o map,
-              
+            ...respostas.map((resp) {
+                  return Resposta(
+                    resp['texto'].toString(),
+                    () => quandoResponder(int.parse(resp['pontuacao'].toString())),
+                  );
+              }).toList(),
           ],
         );
   }
