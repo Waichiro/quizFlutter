@@ -1,16 +1,8 @@
-# projeto_perguntas
+# project_quiz for Mobile with Flutter
 
 A new Flutter project.
 
-## Getting Started
+This project was made from the mobile development class with flutter of the course 'Aprenda Flutter e Desenvolva Apps Para Android e IOS 2022' 
+with Professor Leonardo Moura!
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+It's a very simple code and I hope you like it!!
